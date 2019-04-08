@@ -13,7 +13,7 @@ class Contest extends CI_Controller {
                 $data['contests'] = $this->contest_model->get_contests();
                 $data['title'] = 'Contests archive';
                 $this->load->view('templates/header', $data);
-                $this->load->view('contests/index', $data);
+                $this->load->view('contest/index', $data);
                 $this->load->view('templates/footer');        
         }
 
@@ -30,7 +30,7 @@ class Contest extends CI_Controller {
                 {
                         $data["contests"] = array("firstname"=>"","lastname"=>"","email"=>"","id"=>"");
                         $this->load->view('templates/header', $data);
-                        $this->load->view('contests/edit', $data);
+                        $this->load->view('contest/edit', $data);
                         $this->load->view('templates/footer');
 
                 }
@@ -53,7 +53,7 @@ class Contest extends CI_Controller {
                 {   
                      $data["contests"] = $this->contest_model->get_contests($id);
                      $this->load->view('templates/header', $data);
-                     $this->load->view('contests/edit', $data);                        
+                     $this->load->view('contest/edit', $data);                        
                      $this->load->view('templates/footer');
                 }
                 else
@@ -64,7 +64,7 @@ class Contest extends CI_Controller {
                         if ($this->form_validation->run() === FALSE)
                         {
                               $this->load->view('templates/header', $data);
-                              $this->load->view('contests/edit', $data);
+                              $this->load->view('contest/edit', $data);
                               $this->load->view('templates/footer');
 
                         }
