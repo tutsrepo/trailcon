@@ -18,8 +18,26 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		for($i=1;$i<=100;$i++)
+		{
+			if(($i % 3 == 0) && ($i % 5 == 0))
+			{	
+					$data['arr'][] = "TrailconLeasing";
+			}
+			elseif($i % 3 == 0)
+			{	
+					$data['arr'][] = "Trailcon";
+			}
+			elseif($i % 5 == 0)
+			{	
+					$data['arr'][] = "Leasing";
+			}
+			else $data['arr'][] = $i; 
+							 	# code...				 
+		}	
+		$this->load->view('welcome_message', $data);
 	}
 }
