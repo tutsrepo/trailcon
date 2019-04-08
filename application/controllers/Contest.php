@@ -28,7 +28,21 @@ class Contest extends CI_Controller {
 
                 if ($this->form_validation->run() === FALSE)
                 {
+
+                    if ($this->input->post('update'))
+                    {   
+                        $data["contests"] = array(
+                                                    "firstname"=>$this->input->post('firstname'),
+                                                    "lastname"=>$this->input->post('lastname'),
+                                                    "email"=>$this->input->post('email'),
+                                                    "id"=>""
+                                                );
+                    }
+                    else 
+                    {
                         $data["contests"] = array("firstname"=>"","lastname"=>"","email"=>"","id"=>"");
+                    }        
+
                         $this->load->view('templates/header', $data);
                         $this->load->view('contest/edit', $data);
                         $this->load->view('templates/footer');
@@ -58,22 +72,35 @@ class Contest extends CI_Controller {
                 }
                 else
                 {        
-                        $this->form_validation->set_rules('firstname', 'FirstName', 'required');
-                        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-                        
-                        if ($this->form_validation->run() === FALSE)
-                        {
-                              $this->load->view('templates/header', $data);
-                              $this->load->view('contest/edit', $data);
-                              $this->load->view('templates/footer');
+                    $original_email = $this->contest_model->get_email($id);
+                    if($this->input->post('email') != $original_email) {
+                        $is_unique =  '|is_unique[contests.email]';
+                    } else {
+                        $is_unique =  '';
+                    }
 
-                        }
-                        else
-                        {
-                            $this->contest_model->updateContests($id);
-                            $this->session->set_flashdata('msg', 'Contest Updated');
-                            redirect('contest', 'location');                        }
-                }        
-        }
+                    $this->form_validation->set_rules('firstname', 'FirstName', 'required');
+                    $this->form_validation->set_rules('email', 'Email', 'required|valid_email' . $is_unique);
+                        
+                    if ($this->form_validation->run() === FALSE)
+                    {
+                        $data["contests"] = array(
+                                                    "firstname"=>$this->input->post('firstname'),
+                                                    "lastname"=>$this->input->post('lastname'),
+                                                    "email"=>$this->input->post('email'),
+                                                    "id"=>$id
+                                                );
+                        $this->load->view('templates/header', $data);
+                        $this->load->view('contest/edit', $data);
+                        $this->load->view('templates/footer');
+
+                    }
+                    else
+                    {
+                        $this->contest_model->updateContests($id);
+                        $this->session->set_flashdata('msg', 'Contest Updated');
+                        redirect('contest', 'location');                        }
+                    }        
+                }
 
 }
