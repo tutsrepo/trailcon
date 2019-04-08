@@ -42,4 +42,12 @@ class Contest_model extends CI_Model {
 			$this->db->where('id',$id);
 			$this->db->update('contests',$data);
 		}
+
+        public function get_email($id = 0)
+        {
+            $this->db->select('email');
+            $this->db->from('contests');
+            $this->db->where('id',$id);
+            return $this->db->get()->row()->email;
+        }
 }
