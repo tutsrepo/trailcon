@@ -49,6 +49,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
+$route['contest/details'] = 'contest/contest_create';
+$route['contest/details/(:any)']['GET'] = 'contest/contest_edit/$1';
+$route['contest/details/(:any)']['POST'] = 'contest/contest_edit/$1';
+$route['contest'] = 'contest';
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
