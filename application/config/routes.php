@@ -64,6 +64,7 @@ $route['(:any)/contest'] = 'contest/index/$1';
 $route['(:any)/contest/details'] = 'contest/contest_create/$1';
 $route['(:any)/contest/details/(:any)']['GET'] = 'contest/contest_edit/$1/$2';
 $route['(:any)/contest/details/(:any)']['POST'] = 'contest/contest_edit/$1/$2';
+$route['(:any)'] = 'contest/index/$1';
 
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
