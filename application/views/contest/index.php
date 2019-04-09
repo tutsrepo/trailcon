@@ -1,6 +1,7 @@
 <div class="container">
   <h2><?php echo $title; ?></h2>
-      <a href="<?php echo site_url('contest/details'); ?>" class="btn btn-info" role="button">Add New Contest</a>
+
+      <a href="<?php echo site_url($lang . $add_link); ?>" class="btn btn-info" role="button">Add New Contest</a>
 
 <?php if ($this->session->flashdata('msg')) { ?>
         <div class="alert alert-success"> <?= $this->session->flashdata('msg') ?> </div>
@@ -13,9 +14,9 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
+        <th><?php echo $contest_firstname;?></th>
+        <th><?php echo $contest_lastname;?></th>
+        <th><?php echo $contest_email;?></th>
         <th>&nbsp;</th>
       </tr>
     </thead>
@@ -25,7 +26,7 @@
         <td><?php echo $contest_item['firstname']; ?></td>
         <td><?php echo $contest_item['lastname']; ?></td>
         <td><?php echo $contest_item['email']; ?></td>
-		<td><a href="<?php echo site_url('contest/details/'.$contest_item['id']); ?>" class="btn btn-warning" role="button">Edit Contest</a></td>
+		<td><a href="<?php echo site_url($lang . '/contest/details/'.$contest_item['id']); ?>" class="btn btn-warning" role="button">Edit Contest</a></td>
         
       </tr>
 <?php endforeach; ?>

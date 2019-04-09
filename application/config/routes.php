@@ -50,10 +50,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route['contest/details'] = 'contest/contest_create';
-$route['contest/details/(:any)']['GET'] = 'contest/contest_edit/$1';
-$route['contest/details/(:any)']['POST'] = 'contest/contest_edit/$1';
-$route['contest'] = 'contest';
+
+// French Language Routes
+
+$route['(:any)/concours'] = 'contest/index/$1';
+$route['(:any)/concours/entree'] = 'contest/contest_create/$1';
+$route['(:any)/concours/entree/(:any)']['GET'] = 'contest/contest_edit/$1/$2';
+$route['(:any)/concours/entree/(:any)']['POST'] = 'contest/contest_edit/$1/$2';
+
+
+// English Language Routes
+$route['(:any)/contest'] = 'contest/index/$1';
+$route['(:any)/contest/details'] = 'contest/contest_create/$1';
+$route['(:any)/contest/details/(:any)']['GET'] = 'contest/contest_edit/$1/$2';
+$route['(:any)/contest/details/(:any)']['POST'] = 'contest/contest_edit/$1/$2';
+
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
